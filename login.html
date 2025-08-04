@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Login</title>
+  <style>
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: #3feb0b;
+      color: #fff;
+    }
+
+    .logo-quote {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-quote img { height: 50px; }
+
+    nav { display: flex; gap: 30px; position: relative; }
+
+    nav a { color: #fff; position: relative; }
+
+    .dropdown { position: relative; }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #3feb0b;
+      top: 100%;
+      left: 0;
+      min-width: 150px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-content { display: block; }
+
+    .hamburger { display: none; font-size: 28px; cursor: pointer; }
+
+    /* FORM SECTION */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 5%;
+    }
+
+    .login-form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .login-form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .login-form label {
+      display: block;
+      margin-bottom: 5px;
+      margin-top: 15px;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 40px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+}
+    .login-form button {
+      width: 100%;
+      padding: 12px;
+      background: #007BFF;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      margin-top: 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-form button:hover {
+      background: #0056b3;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #3feb0b;
+      color: #fff;
+      text-align: center;
+      padding: 30px 5%;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+    }
+
+    /* RESPONSIVE NAV */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav a, nav .dropdown { display: none; width: 100%; padding: 10px 0; }
+      nav.active a, nav.active .dropdown { display: block; }
+      .hamburger { display: block; }
+    }
+    .whatsapp-float-text {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 50px;
+  bottom: 20px;
+  right: 20px;
+  text-decoration: none;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float-text img {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-float-text span {
+  font-weight: bold;
+}
+
+.whatsapp-float-text:hover {
+  transform: scale(1.05);
+}
+/* delivery truck styling*/
+.floating-banner {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  color: #2e7d32;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+}
+
+.floating-banner:hover {
+  background-color: #c8e6c9;
+}
+
+.floating-banner i {
+  color: #2e7d32;
+  font-size: 20px;
+}
+/* Floating Social Icons */
+.floating-social {
+  position: fixed;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 12px 14px;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  color: #333;
+  text-decoration: none;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.floating-social i {
+  font-size: 20px;
+}
+
+/* Position for Facebook - middle right */
+.floating-social.facebook {
+  top: 45%;
+  background-color: #1877f2;
+  color: #fff;
+}
+
+/* Position for Twitter/X - slightly below Facebook */
+.floating-social.twitter {
+  top: 55%;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Hover effect */
+.floating-social:hover {
+  opacity: 0.85;
+  transform: translateX(-5px);
+}
+
+  </style>
+</head>
+
+<body>
+  <!--delivery track icon-->
+<a href="https://wa.me/254721322874" target="_blank" class="floating-banner">
+  <i class="fas fa-truck"></i>
+  <span>We deliver countrywide!</span>
+</a>
+  <script>
+  function togglePassword(id) {
+  const field = document.getElementById(id);
+  if (field.type === "password") {
+    field.type = "text";
+  } else {
+    field.type = "password";
+  }
+}
+</script>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-quote">
+      <img src="img/LOGO.png" alt="Logo" />
+      <p>E-palace</p>
+    </div>
+    <nav>
+      <div class="hamburger">&#9776;</div>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <div class="dropdown">
+        <a href="index.html">Products</a>
+        <div class="dropdown-content">
+          <a href="power/power.html">Power</a>
+          <a href="audio/audio.html">audio</a>
+          <a href="cables/cables.html">Cables</a>
+          <a href="chargers/chargers.html">chargers</a>
+          <a href="home appliances/home_appliances.html">Home Appliances</a>
+          <a href="smart office/smart_office.html">Smart & Office</a>
+          <a href="personal_care/personal_care.html">Personal care</a>
+        </div>
+      </div>
+      <a href="login.html">Login</a>
+      <a href="contact.html">Contact</a>
+      <a href="signup.html">Register</a>
+    </nav>
+  </header>
+
+  <!-- LOGIN FORM -->
+  <main>
+    <form class="login-form">
+      <h2>Log In</h2>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="your@email.com" required>
+
+      <label for="password">Password</label>
+<div class="password-field">
+  <input type="password" id="password" name="password" placeholder="Enter password" required minlength="6">
+  <span class="toggle-password" onclick="togglePassword('password')">&#128065;</span>
+</div>
+
+<label for="confirm">Confirm Password</label>
+<div class="password-field">
+  <input type="password" id="confirm" name="confirm" placeholder="Re-enter password" required minlength="6">
+  <span class="toggle-password" onclick="togglePassword('confirm')">&#128065;</span>
+</div>
+
+
+      <button type="submit">Log In</button>
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="index.html">Products</a> |
+      <a href="login.html">Login</a> |
+      <a href="signup.html">Register</a> |
+      <a href="contact.html">Contact</a>
+    </p>
+    <p>Contact us: mutaikalfonce@email.com | +254 721322874</p>
+  </footer>
+  <!-- Floating Social Icons -->
+<a href="https://facebook.com/yourusername" class="floating-social facebook" target="_blank">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="https://x.com/yourusername" class="floating-social twitter" target="_blank">
+  <i class="fab fa-x-twitter"></i>
+</a>
+  <!-- Floating WhatsApp with text -->
+<a href="https://wa.me/254721322874?text=Hi%20I%20am%20interested%20in%20your%20products"
+   class="whatsapp-float-text"
+   target="_blank">
+  <img src="img/whatsapp.png" alt="Chat on WhatsApp">
+  <span>Chat with us</span>
+</a>
+  <!-- HAMBURGER SCRIPT -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+
+    hamburger.onclick = () => {
+      nav.classList.toggle('active');
+    };
+  </script>
+  <!--submission of log in-->
+  <script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    email: form.email.value,
+    password: form.password.value
+  };
+
+  try {
+    const res = await fetch('http://localhost:3000/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const msg = await res.text();
+    alert(msg);
+    form.reset();
+  } catch (error) {
+    alert('Login failed: ' + error);
+  }
+});
+</script>
+</body>
+</html>

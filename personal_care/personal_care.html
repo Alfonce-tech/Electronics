@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>E-place</title>
+  <script src="script.js"></script>
+  <style>
+    /* RESET */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: #3feb0b;
+      color: #fff;
+    }
+
+    .logo-quote {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-quote img {
+      height: 50px;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+      position: relative;
+    }
+
+    nav a {
+      color: #fff;
+      position: relative;
+    }
+
+    /* DROPDOWN */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #3feb0b;
+      top: 100%;
+      left: 0;
+      min-width: 150px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* MAIN GRID */
+    main {
+      padding: 40px 5%;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .product {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+/* Product name under image */
+.product-name {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+.product a {
+  display: block;
+  color: inherit;
+}
+
+.product a:hover .product-name {
+  color: #007BFF; /* Optional: change color on hover */
+}
+    .product a {
+      display: block;
+      margin-top: 10px;
+      color: #007BFF;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #3feb0b;
+      color: #fff;
+      text-align: center;
+      padding: 30px 5%;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+    }
+
+    /* RESPONSIVE NAV */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    /* Hide hamburger on large screens */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Mobile nav styles */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav a, nav .dropdown {
+    display: none; /* Hide links by default */
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  nav.active a,
+  nav.active .dropdown {
+    display: block; /* Show links when active */
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger on small screens */
+  }
+}
+.whatsapp-float-text {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 50px;
+  bottom: 20px;
+  right: 20px;
+  text-decoration: none;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float-text img {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-float-text span {
+  font-weight: bold;
+}
+
+.whatsapp-float-text:hover {
+  transform: scale(1.05);
+}
+/* delivery truck styling*/
+.floating-banner {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  color: #2e7d32;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+}
+
+.floating-banner:hover {
+  background-color: #c8e6c9;
+}
+
+.floating-banner i {
+  color: #2e7d32;
+  font-size: 20px;
+}
+  </style>
+</head>
+
+<body>
+<!--delivery track icon-->
+<a href="https://wa.me/254721322874" target="_blank" class="floating-banner">
+  <i class="fas fa-truck"></i>
+  <span>We deliver countrywide!</span>
+</a>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-quote">
+      <img src="../img/LOGO.png" alt="Logo" />
+      <p>E-Palace</p>
+    </div>
+    <nav>
+      <div class="hamburger">&#9776;</div>
+         <div class="hamburger">&#9776;</div>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <div class="dropdown">
+        <a href="../index.html">Products</a>
+        <div class="dropdown-content">
+          <a href="../power/power.html">Power</a>
+          <a href="../audio/audio.html">audio</a>
+          <a href="../cables/cables.html">Cables</a>
+          <a href="../chargers/chargers.html">chargers</a>
+          <a href="../home appliances/home_appliances.html">Home Appliances</a>
+          <a href="../smart office/smart_office.html">Smart & Office</a>
+          <a href="../personal_care/personal_care.html">Personal care</a>
+        </div>
+      </div>
+      <a href="../login.html">Login</a>
+      <a href="../signup.html">Register</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- MAIN GRID -->
+  <main>
+    <div class="product-grid">
+      <!-- Repeat this block for each product -->
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+  </a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html">
+    <img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Oraimo AirBuds 4 ENC">
+    <h3 class="product-name">Oraimo AirBuds 4 ENC</h3>
+  </a>
+      </div>
+      <div class="product">
+       <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <div class="product">
+        <a href="../audio/airbuds_4Enc.html"><img src="../img/audio/oraimo AirBuds 4 ENC True Wireless Earbuds/OTW-340-680-1.png" alt="Product 1">
+        <h3 class="product-name">Your Product Name</h3></a>
+      </div>
+      <!-- Add more products as needed -->
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="../index.html">Home</a> |
+      <a href="../about.html">About</a> |
+      <a href="../index.html">Products</a> |
+      <a href="../login.html">Login</a> |
+      <a href="../signup.html">Register</a> |
+      <a href="../contact.html">Contact</a>
+    </p>
+    <p>Contact us: mutaikalfonce@email.com | +254 721322874</p>
+  </footer>
+  <!-- Floating WhatsApp with text -->
+<a href="https://wa.me/254721322874?text=Hi%20I%20am%20interested%20in%20your%20products"
+   class="whatsapp-float-text"
+   target="_blank">
+  <img src="../img/WHATSAPP.png" alt="Chat on WhatsApp">
+  <span>Chat with us</span>
+</a>
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('nav');
+
+  hamburger.onclick = () => {
+    nav.classList.toggle('active');
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Product Details</title>
+  <style>
+    /* RESET */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      background: #3feb0b;
+      color: #fff;
+    }
+
+    .logo-quote {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-quote img { height: 50px; }
+
+    nav { display: flex; gap: 30px; position: relative; }
+
+    nav a { color: #fff; position: relative; }
+
+    .dropdown { position: relative; }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #3feb0b;
+      top: 100%;
+      left: 0;
+      min-width: 150px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+    }
+
+    .dropdown:hover .dropdown-content { display: block; }
+
+    /* BODY */
+    main {
+      padding: 40px 5%;
+    }
+
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .product-images {
+      flex: 1 1 400px;
+    }
+
+    .main-image {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .thumbnails {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .thumbnails img {
+      width: 80px;
+      height: 80px;
+      border-radius: 4px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border 0.3s;
+    }
+
+    .thumbnails img:hover {
+      border: 2px solid #007BFF;
+    }
+
+    .product-info {
+      flex: 1 1 300px;
+    }
+
+    .product-info h1 {
+      margin-bottom: 10px;
+    }
+
+    .product-info .price {
+      color: #007BFF;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .product-info p {
+      margin-bottom: 10px;
+    }
+
+    .description {
+      margin-top: 40px;
+    }
+
+    /* RELATED PRODUCTS */
+    .related-products {
+      margin-top: 40px;
+    }
+
+    .related-products h2 {
+      margin-bottom: 20px;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .related-grid img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .related-grid img:hover {
+      transform: translateY(-5px);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #3feb0b;
+      color: #fff;
+      text-align: center;
+      padding: 30px 5%;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #fff;
+      margin: 0 10px;
+    }
+
+    /* RESPONSIVE NAV */
+    .hamburger { display: none; font-size: 28px; cursor: pointer; }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav a, nav .dropdown { display: none; width: 100%; padding: 10px 0; }
+      nav.active a, nav.active .dropdown { display: block; }
+      .hamburger { display: block; }
+      .product-container { flex-direction: column; }
+    }
+    .whatsapp-float-text {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 50px;
+  bottom: 20px;
+  right: 20px;
+  text-decoration: none;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float-text img {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-float-text span {
+  font-weight: bold;
+}
+
+.whatsapp-float-text:hover {
+  transform: scale(1.05);
+}
+/* delivery truck styling*/
+.floating-banner {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  color: #2e7d32;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+}
+
+.floating-banner:hover {
+  background-color: #c8e6c9;
+}
+
+.floating-banner i {
+  color: #2e7d32;
+  font-size: 20px;
+}
+  </style>
+</head>
+
+<body>
+<!--delivery track icon-->
+<a href="https://wa.me/254721322874" target="_blank" class="floating-banner">
+  <i class="fas fa-truck"></i>
+  <span>We deliver countrywide!</span>
+</a>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-quote">
+      <img src="../img/LOGO.png" alt="Logo" />
+      <p>E-palace</p>
+    </div>
+    <nav>
+      <div class="hamburger">&#9776;</div>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <div class="dropdown">
+        <a href="../index.html">Products</a>
+        <div class="dropdown-content">
+          <a href="../power/power.html">Power</a>
+          <a href="../audio/audio.html">audio</a>
+          <a href="../cables/cables.html">Cables</a>
+          <a href="../chargers/chargers.html">chargers</a>
+          <a href="../home appliances/home_appliances.html">Home Appliances</a>
+          <a href="../smart office/smart_office.html">Smart & Office</a>
+          <a href="../personal_care/personal_care.html">Personal care</a>
+        </div>
+      </div>
+      <a href="../login.html">Login</a>
+      <a href="../signup.html">Register</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- BODY -->
+  <main>
+    <div class="product-container">
+      <!-- IMAGES -->
+      <div class="product-images">
+        <img src="img/power/otl/680.png" alt="Main Product" class="main-image" id="mainImage">
+        <div class="thumbnails">
+          <img src="img/power/otl/1.jpg" alt="Thumb 1">
+          <img src="img/power/otl/3.jpg" alt="Thumb 2">
+          <img src="img/power/otl/4.jpg" alt="Thumb 3">
+          <img src="img/power/otl/5.jpg" alt="Thumb 4">
+          <img src="img/power/otl/6.jpg" alt="Thumb 5">
+          <img src="img/power/otl/7.jpg" alt="Thumb 6">
+          <img src="img/power/otl/8.jpg" alt="Thumb 7">
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="product-info">
+        <h1>Wireless Headphones</h1>
+        <p class="price">$89.99</p>
+        <p>High-quality wireless headphones with noise cancellation and long battery life.</p>
+        <p>Available colors: Black, White, Blue</p>
+      </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="description">
+      <h2>Product Description</h2>
+      <p>
+        Experience premium sound quality with our Wireless Headphones. Featuring active noise cancellation, comfortable ear pads, and up to 30 hours of battery life, they’re perfect for work, travel, and play. Connect easily with Bluetooth and enjoy crystal clear calls with the built-in microphone.
+      </p>
+    </div>
+
+    <!-- RELATED PRODUCTS -->
+    <div class="related-products">
+      <h2>Related Products</h2>
+      <div class="related-grid">
+        <a href="#"><img src="https://via.placeholder.com/200/333333" alt="Related 1"></a>
+        <a href="#"><img src="https://via.placeholder.com/200/555555" alt="Related 2"></a>
+        <a href="#"><img src="https://via.placeholder.com/200/777777" alt="Related 3"></a>
+        <a href="#"><img src="https://via.placeholder.com/200/999999" alt="Related 4"></a>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="../index.html">Home</a> |
+      <a href="../about.html">About</a> |
+      <a href="../index.html">Products</a> |
+      <a href="../login.html">Login</a> |
+      <a href="../signup.html">Register</a> |
+      <a href="../contact.html">Contact</a>
+    </p>
+    <p>Contact us: mutaikalfonce@email.com | +254 721322874</p>
+  </footer>
+ <!-- HAMBURGER SCRIPT -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+
+    hamburger.onclick = () => {
+      nav.classList.toggle('active');
+    };
+
+    // Image preview switch
+    const mainImage = document.getElementById('mainImage');
+    const thumbs = document.querySelectorAll('.thumbnails img');
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        mainImage.src = thumb.src;
+      });
+    });
+  </script>
+  <!-- Floating WhatsApp with text -->
+<a href="https://wa.me/254721322874?text=Hi%20I%20am%20interested%20in%20your%20products"
+   class="whatsapp-float-text"
+   target="_blank">
+  <img src="../img/whatsapp.png" alt="Chat on WhatsApp">
+  <span>Chat with us</span>
+</a>
+</body>
+</html>

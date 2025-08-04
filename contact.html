@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Contact Us</title>
+  <style>
+/* --- CONTACT PAGE STYLES --- */
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #9b9894ee;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* === HEADER === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: #3feb0b;
+  color: #fff;
+}
+
+.logo-quote {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-quote img {
+  height: 50px;
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+  position: relative;
+}
+
+nav a {
+  color: #fff;
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: #3feb0b;
+  top: 100%;
+  left: 0;
+  min-width: 150px;
+  z-index: 10;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* === HERO === */
+.hero {
+  background: blue;
+  color: #fff;
+  padding: 60px 40px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 40px 5%;
+}
+
+.hero h1 {
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* === FOOTER === */
+footer {
+  background: #3feb0b;
+  color: #fff;
+  text-align: center;
+  padding: 30px 5%;
+  margin-top: auto; /* pushes footer to bottom if content is short */
+}
+
+footer a {
+  color: #fff;
+  margin: 0 10px;
+}
+
+/* === RESPONSIVE NAV === */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    background: #333;
+    width: 100%;
+  }
+
+  nav a,
+  nav .dropdown {
+    display: none;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  nav.active a,
+  nav.active .dropdown {
+    display: block;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+}
+.contact-container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.contact-form,
+.contact-details {
+  flex: 1 1 320px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2,
+.contact-details h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #3feb0b;
+}
+
+.contact-form label {
+  display: block;
+  margin: 12px 0 5px;
+  font-weight: bold;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #007BFF;
+  border: none;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #0056b3;
+}
+
+.contact-details p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.contact-details strong {
+  display: inline-block;
+  width: 90px;
+}
+
+.contact-details iframe {
+  margin-top: 20px;
+  border: none;
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+}
+
+/* Keep hero, header, nav, and footer styles as they are */
+
+/* --- MOBILE RESPONSIVENESS --- */
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+  }
+}
+.whatsapp-float-text {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 50px;
+  bottom: 20px;
+  right: 20px;
+  text-decoration: none;
+  z-index: 999;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float-text img {
+  width: 24px;
+  height: 24px;
+}
+
+.whatsapp-float-text span {
+  font-weight: bold;
+}
+
+.whatsapp-float-text:hover {
+  transform: scale(1.05);
+}
+/* delivery truck styling*/
+.floating-banner {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #e8f5e9;
+  border: 1px solid #4caf50;
+  color: #2e7d32;
+  padding: 10px 15px;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: background-color 0.3s ease;
+}
+
+.floating-banner:hover {
+  background-color: #c8e6c9;
+}
+
+.floating-banner i {
+  color: #2e7d32;
+  font-size: 20px;
+}
+/* Floating Social Icons */
+.floating-social {
+  position: fixed;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 12px 14px;
+  border-radius: 8px 0 0 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  color: #333;
+  text-decoration: none;
+  z-index: 9999;
+  transition: all 0.3s ease;
+}
+
+.floating-social i {
+  font-size: 20px;
+}
+
+/* Position for Facebook - middle right */
+.floating-social.facebook {
+  top: 45%;
+  background-color: #1877f2;
+  color: #fff;
+}
+
+/* Position for Twitter/X - slightly below Facebook */
+.floating-social.twitter {
+  top: 55%;
+  background-color: #000;
+  color: #fff;
+}
+
+/* Hover effect */
+.floating-social:hover {
+  opacity: 0.85;
+  transform: translateX(-5px);
+}
+
+</style>
+</head>
+<body>
+<!--delivery track icon-->
+<a href="https://wa.me/254721322874" target="_blank" class="floating-banner">
+  <i class="fas fa-truck"></i>
+  <span>We deliver countrywide!</span>
+</a>
+  <!-- HEADER -->
+  <header>
+    <div class="logo-quote">
+      <img src="img/LOGO.png" alt="Logo" />
+      <p>E-Palace</p>
+    </div>
+    <nav>
+      <div class="hamburger">&#9776;</div>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <div class="dropdown">
+        <a href="index.html">Products</a>
+        <div class="dropdown-content">
+          <a href="power/power.html">Power</a>
+          <a href="audio/audio.html">audio</a>
+          <a href="cables/cables.html">Cables</a>
+          <a href="chargers/chargers.html">chargers</a>
+          <a href="home appliances/home_appliances.html">Home Appliances</a>
+          <a href="smart office/smart_office.html">Smart & Office</a>
+          <a href="personal_care/personal_care.html">Personal care</a>
+        </div>
+      </div>
+      <a href="login.html">Login</a>
+      <a href="contact.html">Contact</a>
+      <a href="signup.html">Register</a>
+    </nav>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="hero">
+      <h1>Contact Us</h1>
+      <p>We’d love to hear from you! Please reach out with any questions, feedback, or inquiries.</p>
+    </div>
+
+    <section class="contact-container">
+      <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email" required />
+
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="Your phone number" required />
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-details">
+        <h2>Contact Details</h2>
+        <p><strong>Address:</strong> 123 Electronics Street, Nairobi, Kenya</p>
+        <p><strong>Email:</strong> contact@example.com</p>
+        <p><strong>Phone:</strong> +254 123 456 789</p>
+
+        <!-- Optional: Google Map embed -->
+        <!-- <iframe src="YOUR_MAP_EMBED_LINK" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About</a> |
+      <a href="index.html">Products</a> |
+      <a href="login.html">Login</a> |
+      <a href="signup.html">Register</a> |
+      <a href="contact.html">Contact</a>
+    </p>
+    <p>Contact us: contact@example.com | +254 123 456 789</p>
+  </footer>
+  <!-- Floating Social Icons -->
+<a href="https://facebook.com/yourusername" class="floating-social facebook" target="_blank">
+  <i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="https://x.com/yourusername" class="floating-social twitter" target="_blank">
+  <i class="fab fa-x-twitter"></i>
+</a>
+<!-- Floating WhatsApp with text -->
+<a href="https://wa.me/254721322874?text=Hi%20I%20am%20interested%20in%20your%20products"
+   class="whatsapp-float-text"
+   target="_blank">
+  <img src="img/whatsapp.png" alt="Chat on WhatsApp">
+  <span>Chat with us</span>
+</a>
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+<!--submission of message script-->
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    message: form.message.value
+  };
+
+  try {
+    const res = await fetch('http://localhost:3000/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    const msg = await res.text();
+    alert(msg);
+    form.reset();
+  } catch (error) {
+    alert('Message failed: ' + error);
+  }
+});
+</script>
+</body>
+</html>
