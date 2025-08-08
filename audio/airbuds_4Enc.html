@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
   <title>Product Details</title>
   <style>
     /* RESET */
@@ -267,7 +268,21 @@
   opacity: 0.85;
   transform: translateX(-5px);
 }
-
+/*Glowing title*/
+.glow-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #f3a805; /* Neon cyan */
+  text-align: center;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 40px #00ffff,
+    0 0 80px #00ffff;
+  margin-top: 30px;
+}
   </style>
 </head>
 
@@ -281,7 +296,7 @@
   <header>
     <div class="logo-quote">
       <img src="../img/LOGO.png" alt="Logo" />
-      <p>E-palace</p>
+      <h1 class="glow-title">E-palace</h1>
     </div>
     <nav>
       <div class="hamburger">&#9776;</div>
